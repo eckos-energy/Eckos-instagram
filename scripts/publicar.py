@@ -82,8 +82,6 @@ def publish(user_id, code, folder, post):
 
 
 def main():
-    if not TOKEN:
-        sys.exit("Segredo IG_TOKEN não configurado no repositório.")
     now = datetime.now(timezone.utc)
     due = []
     for code in sorted(os.listdir(FILA)) if os.path.isdir(FILA) else []:
@@ -102,6 +100,8 @@ def main():
     if not due:
         print("Nada para publicar agora.")
         return
+    if not TOKEN:
+        sys.exit("Segredo IG_TOKEN não configurado no repositório.")
     me = call("GET", "me", {"fields": "user_id,username"})
     user_id = me["user_id"]
     print(f"Conta: @{me.get('username')}")
