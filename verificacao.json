@@ -1,0 +1,19 @@
+{
+  "em": "2026-10-23T21:25:46.170258+00:00",
+  "conta": {
+    "username": "eckos.energy",
+    "account_type": "BUSINESS"
+  },
+  "limite_publicacao": {
+    "data": [
+      {
+        "quota_usage": 0,
+        "config": {
+          "quota_total": 100,
+          "quota_duration": 86400
+        }
+      }
+    ]
+  },
+  "ok": true
+}
