@@ -1,0 +1,23 @@
+name: Renovar token do Instagram
+
+on:
+  schedule:
+    - cron: "0 12 * * 1"   # toda segunda, 9h em Brasília
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  token:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Conferir e renovar
+        env:
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: python scripts/token.py
