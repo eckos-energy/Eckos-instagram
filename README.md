@@ -12,3 +12,6 @@ Segredos do repositório (Settings → Secrets and variables → Actions):
 - `GH_PAT`: token do GitHub com permissão de escrever segredos neste repositório (opcional; com ele o token do Instagram é renovado sozinho toda semana).
 
 As imagens ficam públicas neste repositório porque a API do Instagram exige um endereço público para buscá-las.
+
+## Aprovação pelo calendário
+Os posts ficam em `fila/<CÓDIGO>/` com `aprovado: false`. Quando o Gabriel muda o status para **Aprovado** no calendário de posts do claude.ai, uma tarefa agendada roda `scripts/sincronizar.py` (todo dia às 7h e às 15h), copia legenda, texto alternativo, data e horário para o `post.json`, marca `aprovado: true` e dá push. O Actions publica no horário marcado. Se o status voltar para Pronto antes do horário, o post é segurado.
