@@ -1,7 +1,13 @@
 {
-  "titulo": "S04",
-  "legenda": "",
-  "alt": [],
-  "publicar_em": null,
-  "aprovado": false
+  "titulo": "Carregadores de veículos elétricos",
+  "legenda": "Seu carro elétrico, carregado em casa. 🚗⚡\n\nTomada comum carrega, mas pode levar mais de um dia. Um carregador de parede (wallbox) faz a carga completa em algumas horas, com circuito exclusivo e proteções próprias. O tempo varia conforme o carro e a potência do carregador.\n\nNão é só ligar na parede: a Eckos analisa se o padrão e os cabos aguentam a carga, faz o projeto dentro das normas com responsável técnico e resolve a recarga em condomínio, com consumo medido por vaga. E, se você quiser, o carro pode ser abastecido pelo seu sistema solar.\n\nPara casas, condomínios, empresas com frota e comércios.\n\nVai de elétrico? Comece pela recarga: avaliamos a sua instalação e enviamos o orçamento sem compromisso.\n\n📲 Chame no WhatsApp (link na bio) ou envie uma mensagem no direct.\n\n#carroeletrico #carregadorveicular #wallbox #mobilidadeeletrica #energiasolar",
+  "alt": [
+    "Capa clara com o raio da Eckos Energy, com o logo da Eckos Energy. Texto: Solução 04 · carregadores. Seu carro elétrico, carregado em casa. Instalação segura, no padrão certo, em casa, no condomínio ou na empresa. Carregador de carro elétrico em casa, no condomínio ou na empresa.",
+    "Card roxo com o raio da Eckos Energy. Texto: O que é. Tomada comum carrega. Mas devagar. Tomada comum. Pode passar de 1 dia. Tempo para carga completa, sem circuito dedicado. Wallbox. Algumas horas. Circuito exclusivo, proteções próprias e carga várias vezes mais rápida. O tempo varia conforme o carro e a potência do carregador.",
+    "Card roxo-escuro com o raio da Eckos Energy. Texto: Para quem. Onde tem carro elétrico, tem que ter carregador. Casas. Acordar com o carro sempre carregado. Condomínios. Vagas com medição individual. Empresas e frotas. Veículos prontos para o expediente. Comércios. Um motivo a mais para o cliente ficar.",
+    "Card claro com o raio da Eckos Energy. Texto: Por que com a Eckos. Não é só ligar na parede. 01. Análise da instalação. Verificamos se o padrão e os cabos aguentam a carga. 02. Projeto dentro das normas. Circuito exclusivo, proteções e responsável técnico. 03. Solução para condomínio. Capacidade do prédio e consumo medido por vaga. 04. Carro abastecido pelo sol. Integração com o seu sistema solar, se você quiser.",
+    "Card roxo com o raio da Eckos Energy. Texto: Vai de elétrico? Comece pela recarga. Avaliamos a sua instalação e enviamos o orçamento sem compromisso, para casa, condomínio ou empresa. Chame no WhatsApp pelo link na bio ou envie uma mensagem no direct."
+  ],
+  "publicar_em": "2026-11-05T16:00:00-03:00",
+  "aprovado": true
 }

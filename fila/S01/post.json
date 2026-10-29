@@ -1,7 +1,13 @@
 {
-  "titulo": "S01",
-  "legenda": "",
-  "alt": [],
-  "publicar_em": null,
-  "aprovado": false
+  "titulo": "Solar on-grid",
+  "legenda": "Gere a sua própria energia e pague bem menos na conta de luz. ☀️\n\nEnergia solar on-grid é o sistema com painéis no telhado ligados à rede da distribuidora. De dia, ele abastece a casa ou a empresa. O que sobra vai para a rede e vira crédito de energia, que você usa à noite e nos meses seguintes (os créditos valem por até 60 meses).\n\nÉ para quem quer economia sem complicação: casas, sítios, empresas e condomínios. O sistema se paga em poucos anos e continua gerando por mais de 25 anos. A Eckos cuida de tudo: projeto, ART, instalação e homologação.\n\nQuanto você economizaria? Mande a sua última conta de luz e receba uma simulação sem compromisso, feita por engenheiro.\n\n📲 Chame no WhatsApp (link na bio) ou envie uma mensagem no direct.\n\n#energiasolar #ongrid #contadeluz #sistemafotovoltaico #atibaia",
+  "alt": [
+    "Mãos com luvas fixando um painel solar num telhado de telha cerâmica, com o logo da Eckos Energy. Texto: Solução 01 · on-grid. Gere a sua própria energia. E pague bem menos na conta de luz. Todo mês, por mais de 25 anos. Energia solar on-grid para casa, sítio e empresa.",
+    "Card claro com o raio da Eckos Energy. Texto: O que é. Painéis no telhado, ligados à rede da distribuidora. 01. De dia, o sistema abastece o imóvel. Painéis → inversor → sua casa ou empresa. 02. O que sobra vai para a rede. E vira crédito de energia. 03. À noite e nos meses seguintes. Você usa os créditos. Eles valem por até 60 meses.",
+    "Card roxo com o raio da Eckos Energy. Texto: Para quem. Para quem quer economia sem complicação. Casa. Conta de luz alta todo mês. Sítio. Bombas, irrigação e área de lazer. Empresa. Energia como custo fixo pesado. Condomínio. Áreas comuns e taxa menor.",
+    "Card roxo-escuro com o raio da Eckos Energy. Texto: O que você ganha. Um investimento que se paga e continua rendendo. 01. Retorno em poucos anos. A economia na conta paga o sistema. 02. 25+ anos de geração. Painéis com garantia de performance de longo prazo. 03. Proteção contra reajustes. A tarifa sobe, a sua geração continua sua. 04. Tudo resolvido pela Eckos. Projeto, ART, instalação e homologação.",
+    "Card claro com o raio da Eckos Energy. Texto: Quanto você economizaria? Mande a sua última conta de luz e receba uma simulação sem compromisso, feita por engenheiro. Chame no WhatsApp pelo link na bio ou envie uma mensagem no direct."
+  ],
+  "publicar_em": "2026-11-02T16:00:00-03:00",
+  "aprovado": true
 }

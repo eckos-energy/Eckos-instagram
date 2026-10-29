@@ -1,7 +1,13 @@
 {
-  "titulo": "S03",
-  "legenda": "",
-  "alt": [],
-  "publicar_em": null,
-  "aprovado": false
+  "titulo": "Armazenamento de energia (sem solar)",
+  "legenda": "Bateria que economiza. Mesmo sem painel solar. 🔋\n\nO armazenamento de energia (BESS) é um banco de baterias ligado à rede do imóvel. Ele carrega fora da ponta, quando a energia é mais barata, e descarrega no horário de ponta. Assim, a empresa deixa de comprar o kWh mais caro do dia.\n\nPara indústrias, comércios e condomínios do Grupo A, para quem usa gerador na ponta e para quem não tem espaço para solar. O resultado: conta menor na ponta, fim das multas de ultrapassagem de demanda, backup para as cargas críticas e um sistema pronto para receber painéis no futuro.\n\nSua empresa paga caro na ponta? Envie as últimas 12 faturas e receba o estudo de armazenamento sem compromisso.\n\n📲 Chame no WhatsApp (link na bio) ou envie uma mensagem no direct.\n\n#armazenamentodeenergia #bess #energiaparaempresas #horariodeponta #eficienciaenergetica",
+  "alt": [
+    "Técnico de costas, com capacete roxo, conferindo o painel de controle numa sala de baterias com luz quente, com o logo da Eckos Energy. Texto: Solução 03 · armazenamento. Bateria que economiza. Mesmo sem painel solar. Para empresas e condomínios que pagam caro no horário de ponta. Armazenamento de energia (BESS) para empresas e condomínios.",
+    "Card roxo com o raio da Eckos Energy. Texto: O que é. Compra energia barata. Usa quando ela fica cara. Um banco de baterias ligado à rede do seu imóvel, que assume o consumo justamente nas horas mais caras. Fora da ponta. Carrega. Com a energia da rede no horário mais barato. Na ponta. Descarrega. E a empresa deixa de comprar o kWh mais caro do dia.",
+    "Card claro com o raio da Eckos Energy. Texto: Para quem. Para quem sente o horário de ponta no bolso. Indústrias e comércios. Clientes do Grupo A (média tensão). Condomínios. Elevadores, bombas e conta alta. Quem usa gerador. Diesel, ruído e manutenção na ponta. Sem espaço para solar. Telhado pequeno, sombreado ou alugado.",
+    "Card roxo-escuro com o raio da Eckos Energy. Texto: O que você ganha. Menos custo, mais controle. 01. Conta menor na ponta. Deixa de comprar o kWh mais caro do dia. 02. Fim das multas. Segura os picos e evita a ultrapassagem de demanda. 03. Backup para o essencial. Cargas críticas continuam ligadas se a rede cair. 04. Pronto para o solar. Se um dia quiser painéis, o sistema já está preparado.",
+    "Card roxo com o raio da Eckos Energy. Texto: Sua empresa paga caro na ponta? Envie as últimas 12 faturas. Fazemos o estudo de armazenamento e apresentamos o resultado, sem compromisso. Chame no WhatsApp pelo link na bio ou envie uma mensagem no direct."
+  ],
+  "publicar_em": "2026-11-04T16:00:00-03:00",
+  "aprovado": true
 }
