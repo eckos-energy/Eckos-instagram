@@ -44,7 +44,7 @@ def main(src):
         atual = json.load(open(pj, encoding="utf-8")) if os.path.isfile(pj) else {}
         novo = dict(atual)
         if quer:
-            hora = (p.get("hora") or "18:07").strip()
+            hora = (p.get("hora") or "07:50").strip()
             novo.update({
                 "titulo": p.get("titulo", code),
                 "legenda": p.get("legenda", ""),
