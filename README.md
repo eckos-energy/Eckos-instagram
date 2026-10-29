@@ -15,3 +15,12 @@ As imagens ficam públicas neste repositório porque a API do Instagram exige um
 
 ## Aprovação pelo calendário
 Os posts ficam em `fila/<CÓDIGO>/` com `aprovado: false`. Quando o Gabriel muda o status para **Aprovado** no calendário de posts do claude.ai, uma tarefa agendada roda `scripts/sincronizar.py` (todo dia às 7h e às 15h), copia legenda, texto alternativo, data e horário para o `post.json`, marca `aprovado: true` e dá push. O Actions publica no horário marcado. Se o status voltar para Pronto antes do horário, o post é segurado.
+
+## Artigos do site (eckos.energy)
+Cada notícia aprovada também vira um artigo no site, com o mesmo código do post (ex.: N04).
+- Regras de escrita e campos do calendário: `site/REGRAS-ARTIGOS.md`.
+- `site/fila/<CÓDIGO>/`: `artigo.json` (texto em Markdown, SEO, horário) e `capa.jpg` (imagem destacada).
+- `site/publicados/<CÓDIGO>/resultado.json`: id e link do artigo publicado.
+- A liberação das 7h e 15h roda `scripts/sincronizar_artigos.py` com a coleção `artigos` do calendário; o Actions (`publicar-site.yml`) publica pela API do WordPress a cada 30 minutos.
+- Status `rascunho` no calendário cria um rascunho no WordPress para revisão, sem publicar.
+- Segredos: `WP_URL`, `WP_USER` e `WP_APP_PASSWORD` (senha de aplicativo do usuário eckos.automacao, função Editor).

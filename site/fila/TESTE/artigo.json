@@ -1,0 +1,15 @@
+{
+  "titulo": "Teste de publicação automática (pode apagar)",
+  "slug": "teste-publicacao-automatica",
+  "conteudo": "Este é um **rascunho de teste** da automação de artigos da Eckos Energy. Ele não está publicado e pode ser apagado.\n\n## O que está sendo testado\n- Login pela senha de aplicativo\n- Imagem destacada com texto alternativo\n- Categoria, tags e dados do Rank Math\n\n## Link interno\nVeja a seção de [orçamento](/#orcamento).",
+  "resumo": "Rascunho de teste da automação de artigos.",
+  "seo_titulo": "Teste de publicação automática | Eckos Energy",
+  "meta_descricao": "Rascunho de teste da automação de artigos da Eckos Energy. Pode apagar.",
+  "palavra_chave": "teste automação",
+  "categoria": "Notícias",
+  "tags": ["teste-automacao"],
+  "alt_capa": "Capa de teste da automação de artigos da Eckos Energy.",
+  "publicar_em": null,
+  "aprovado": true,
+  "status_wp": "draft"
+}

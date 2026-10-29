@@ -1,0 +1,41 @@
+name: Publicar artigos no site
+
+on:
+  schedule:
+    - cron: "7,37 * * * *"   # confere a fila do site a cada 30 minutos
+  push:
+    paths: ["site/fila/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publicar-site
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Publicar artigos aprovados
+        env:
+          WP_URL: ${{ secrets.WP_URL }}
+          WP_USER: ${{ secrets.WP_USER }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+        run: python scripts/publicar_artigos.py
+      - name: Registrar resultado
+        if: always()
+        run: |
+          git config user.name "eckos-bot"
+          git config user.email "eckos-bot@users.noreply.github.com"
+          git add -A site
+          if ! git diff --cached --quiet; then
+            git commit -m "Atualiza fila de artigos do site"
+            git pull --rebase
+            git push
+          fi
