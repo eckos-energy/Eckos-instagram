@@ -7,9 +7,21 @@
   "meta_descricao": "Rascunho de teste da automação de artigos da Eckos Energy. Pode apagar.",
   "palavra_chave": "teste automação",
   "categoria": "Notícias",
-  "tags": ["teste-automacao"],
+  "tags": [
+    "teste-automacao"
+  ],
   "alt_capa": "Capa de teste da automação de artigos da Eckos Energy.",
   "publicar_em": null,
-  "aprovado": true,
-  "status_wp": "draft"
+  "aprovado": false,
+  "status_wp": "draft",
+  "wp_id": 218,
+  "rascunho": {
+    "codigo": "TESTE",
+    "id": 218,
+    "status": "draft",
+    "link": "https://eckos.energy/?p=218",
+    "capa_id": 217,
+    "rank_math": "ok",
+    "publicado_em": "2026-10-29T18:35:18+00:00"
+  }
 }
