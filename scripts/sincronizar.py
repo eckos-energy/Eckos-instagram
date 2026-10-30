@@ -22,6 +22,11 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FILA = os.path.join(ROOT, "fila")
 PUB = os.path.join(ROOT, "publicados")
 APROVA = ("aprovado", "agendado")
+# Localização padrão dos posts (id da localização no Instagram, ex.: Atibaia). O campo localId do post no calendário tem prioridade.
+try:
+    LOCAL_PADRAO = json.load(open(os.path.join(ROOT, "config.json"), encoding="utf-8")).get("local_padrao", "")
+except Exception:
+    LOCAL_PADRAO = ""
 
 
 def main(src):
@@ -51,6 +56,7 @@ def main(src):
                 "alt": p.get("alt") or [],
                 "publicar_em": f"{p['data']}T{hora}:00-03:00",
                 "aprovado": True,
+                "local_id": str(p.get("localId") or LOCAL_PADRAO or ""),
             })
             if not novo["legenda"]:
                 res["erros"][code] = "aprovado sem legenda no calendário"

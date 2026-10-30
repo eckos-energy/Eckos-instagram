@@ -1,7 +1,8 @@
 """Publica no Instagram os posts aprovados da pasta fila/.
 
 Cada post fica em fila/<CODIGO>/ com:
-  post.json  -> {"titulo", "legenda", "alt": [...], "publicar_em": "2026-10-21T18:00:00-03:00", "aprovado": true}
+  post.json  -> {"titulo", "legenda", "alt": [...], "publicar_em": "2026-10-21T18:00:00-03:00", "aprovado": true,
+                 "local_id": "<id da localização do Instagram, opcional>"}
   01.jpg, 02.jpg, ...  (JPEG, na ordem do carrossel)
 
 O post sai quando aprovado == true e publicar_em já passou. Depois de publicado,
@@ -59,10 +60,13 @@ def publish(user_id, code, folder, post):
     caption = post.get("legenda", "")
     url = lambda f: f"{RAW}/fila/{urllib.parse.quote(code)}/{urllib.parse.quote(f)}"
 
+    local = str(post.get("local_id") or "").strip()
     if len(imgs) == 1:
         p = {"image_url": url(imgs[0]), "caption": caption}
         if alts:
             p["alt_text"] = alts[0]
+        if local:
+            p["location_id"] = local
         creation = call("POST", f"{user_id}/media", p)["id"]
     else:
         children = []
@@ -73,8 +77,10 @@ def publish(user_id, code, folder, post):
             cid = call("POST", f"{user_id}/media", p)["id"]
             wait_ready(cid)
             children.append(cid)
-        creation = call("POST", f"{user_id}/media", {
-            "media_type": "CAROUSEL", "children": ",".join(children), "caption": caption})["id"]
+        p = {"media_type": "CAROUSEL", "children": ",".join(children), "caption": caption}
+        if local:
+            p["location_id"] = local  # no carrossel, a localização vai no contêiner principal
+        creation = call("POST", f"{user_id}/media", p)["id"]
     wait_ready(creation)
     media_id = call("POST", f"{user_id}/media_publish", {"creation_id": creation})["id"]
     info = call("GET", media_id, {"fields": "permalink,timestamp"})
