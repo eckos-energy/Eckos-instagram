@@ -86,8 +86,25 @@ def md_to_blocks(md):
             lst.clear()
         lst_tag = None
 
+    tbl = []
+
+    def flush_table():
+        if not tbl:
+            return
+        rows = [[c.strip() for c in r.strip().strip("|").split("|")] for r in tbl
+                if not re.match(r"^\|?\s*:?-{3,}", r.strip())]
+        tbl.clear()
+        if not rows:
+            return
+        head = "".join(f"<th>{inline(c)}</th>" for c in rows[0])
+        body = "".join("<tr>" + "".join(f"<td>{inline(c)}</td>" for c in r) + "</tr>" for r in rows[1:])
+        out.append(f'<!-- wp:table -->\n<figure class="wp-block-table"><table class="has-fixed-layout"><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table></figure>\n<!-- /wp:table -->')
+
     for line in md.replace("\r\n", "\n").split("\n"):
         s = line.strip()
+        if s.startswith("|"):
+            flush_para(); flush_list(); tbl.append(s); continue
+        flush_table()
         if not s:
             flush_para(); flush_list(); continue
         m = re.match(r"^(#{2,4})\s+(.*)$", s)
@@ -110,7 +127,7 @@ def md_to_blocks(md):
             continue
         flush_list()
         para.append(s)
-    flush_para(); flush_list()
+    flush_table(); flush_para(); flush_list()
     return "\n\n".join(out)
 
 
