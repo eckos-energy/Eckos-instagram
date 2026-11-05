@@ -24,3 +24,11 @@ Cada notícia aprovada também vira um artigo no site, com o mesmo código do po
 - A liberação das 7h e 15h roda `scripts/sincronizar_artigos.py` com a coleção `artigos` do calendário; o Actions (`publicar-site.yml`) publica pela API do WordPress a cada 30 minutos.
 - Status `rascunho` no calendário cria um rascunho no WordPress para revisão, sem publicar.
 - Segredos: `WP_URL`, `WP_USER` e `WP_APP_PASSWORD` (senha de aplicativo do usuário eckos.automacao, função Editor).
+
+## Imagens que faltam na fila (renderização automática)
+Se um post foi aprovado no calendário mas não tem `fila/<CÓDIGO>/`, a liberação das 7h e 15h gera as imagens sozinha:
+baixa os `.dc.html` do canvas (campo `arquivos` do post) e os blobs usados, roda
+`python3 scripts/renderizar.py render <CÓDIGO> <pasta_canvas> <pasta_blobs> <arquivos...>` (JPEG 1080×1350, fonte Montserrat local em `scripts/fontes/`)
+e depois `scripts/sincronizar.py` de novo. `python3 scripts/renderizar.py blobs <pasta_canvas> <arquivos...>` lista os blobs necessários.
+
+Post aprovado com data/hora que já passou (mais de 30 min) não é liberado: aparece em `data_passada` e espera o Gabriel escolher uma data nova.

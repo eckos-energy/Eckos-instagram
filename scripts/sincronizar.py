@@ -12,11 +12,14 @@ Regras:
 Imprime um resumo em JSON:
   liberados      -> códigos que ficaram aprovados nesta rodada (o calendário deve virar "agendado")
   segurados      -> códigos que voltaram para aprovado = false
-  sem_pasta      -> aprovados no calendário sem imagens na fila (precisa renderizar e subir)
+  sem_pasta      -> aprovados no calendário sem imagens na fila (renderizar com scripts/renderizar.py e rodar de novo)
+  data_passada   -> aprovados cuja data/hora já passou há mais de 30 min: não são liberados, para não sair
+                    publicado de surpresa; o Gabriel escolhe uma data nova no calendário
   publicados     -> {código: {permalink, publicado_em}} de publicados/
   erros          -> {código: mensagem} de fila/<CÓDIGO>/erro.json
 """
 import json, os, sys, glob
+from datetime import datetime, timedelta, timezone
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FILA = os.path.join(ROOT, "fila")
@@ -35,7 +38,7 @@ def main(src):
         d = json.load(open(f, encoding="utf-8"))
         d = d.get("data", d) if isinstance(d.get("data"), dict) else d
         posts[os.path.basename(f)[:-5]] = d
-    res = {"liberados": [], "segurados": [], "sem_pasta": [], "publicados": {}, "erros": {}}
+    res = {"liberados": [], "segurados": [], "sem_pasta": [], "data_passada": [], "publicados": {}, "erros": {}}
     for code, p in sorted(posts.items()):
         folder = os.path.join(FILA, code)
         if os.path.isdir(os.path.join(PUB, code)):
@@ -50,6 +53,10 @@ def main(src):
         novo = dict(atual)
         if quer:
             hora = (p.get("hora") or "07:50").strip()
+            quando = datetime.fromisoformat(f"{p['data']}T{hora}:00-03:00")
+            if not atual.get("aprovado") and quando < datetime.now(timezone.utc) - timedelta(minutes=30):
+                res["data_passada"].append(code)
+                continue
             novo.update({
                 "titulo": p.get("titulo", code),
                 "legenda": p.get("legenda", ""),
