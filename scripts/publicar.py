@@ -1,5 +1,10 @@
 """Publica no Instagram os posts aprovados da pasta fila/.
 
+Reels: se a pasta tiver um vídeo (.mp4 ou .mov), o post sai como Reels (também no feed), com
+capa.jpg opcional como capa. Legenda e localização vêm do post.json; o texto alternativo não se aplica a Reels.
+Teste sem publicar: python scripts/publicar.py --teste <CODIGO> (cria o contêiner na API, espera ficar
+pronto e para antes do media_publish).
+
 Cada post fica em fila/<CODIGO>/ com:
   post.json  -> {"titulo", "legenda", "alt": [...], "publicar_em": "2026-10-21T18:00:00-03:00", "aprovado": true,
                  "local_id": "<id da localização do Instagram, opcional>"}
@@ -50,7 +55,34 @@ def wait_ready(container_id, limit=60):
     raise RuntimeError(f"container {container_id} não ficou pronto a tempo")
 
 
+def publish_reels(user_id, code, folder, post, video, teste=False):
+    url = lambda f: f"{RAW}/fila/{urllib.parse.quote(code)}/{urllib.parse.quote(f)}"
+    p = {"media_type": "REELS", "video_url": url(video), "caption": post.get("legenda", ""), "share_to_feed": "true"}
+    if os.path.isfile(os.path.join(folder, "capa.jpg")):
+        p["cover_url"] = url("capa.jpg")
+    local = str(post.get("local_id") or "").strip()
+    if local:
+        p["location_id"] = local
+    creation = call("POST", f"{user_id}/media", p)["id"]
+    wait_ready(creation, limit=120)
+    if teste:
+        return {"teste": True, "creation_id": creation, "status": "FINISHED (não publicado)"}
+    media_id = call("POST", f"{user_id}/media_publish", {"creation_id": creation})["id"]
+    info = call("GET", media_id, {"fields": "permalink,timestamp"})
+    return {"media_id": media_id, "permalink": info.get("permalink"), "timestamp": info.get("timestamp"), "tipo": "REELS"}
+
+
+def achar_video(folder):
+    for f in sorted(os.listdir(folder)):
+        if f.lower().endswith((".mp4", ".mov")):
+            return f
+    return None
+
+
 def publish(user_id, code, folder, post):
+    video = achar_video(folder)
+    if video:
+        return publish_reels(user_id, code, folder, post, video)
     imgs = sorted(f for f in os.listdir(folder) if f.lower().endswith((".jpg", ".jpeg")))
     if not imgs:
         raise RuntimeError("nenhuma imagem .jpg na pasta")
@@ -87,7 +119,22 @@ def publish(user_id, code, folder, post):
     return {"media_id": media_id, "permalink": info.get("permalink"), "timestamp": info.get("timestamp")}
 
 
+def main_teste(code):
+    if not TOKEN:
+        sys.exit("Segredo IG_TOKEN não configurado no repositório.")
+    folder = os.path.join(FILA, code)
+    post = json.load(open(os.path.join(folder, "post.json"), encoding="utf-8"))
+    video = achar_video(folder)
+    if not video:
+        sys.exit("pasta sem vídeo")
+    me = call("GET", "me", {"fields": "user_id,username"})
+    print(f"Conta: @{me.get('username')}")
+    print(json.dumps(publish_reels(me["user_id"], code, folder, post, video, teste=True), ensure_ascii=False))
+
+
 def main():
+    if len(sys.argv) > 2 and sys.argv[1] == "--teste":
+        return main_teste(sys.argv[2])
     now = datetime.now(timezone.utc)
     due = []
     for code in sorted(os.listdir(FILA)) if os.path.isdir(FILA) else []:

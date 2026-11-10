@@ -1,0 +1,25 @@
+name: Testar Reels (sem publicar)
+
+on:
+  workflow_dispatch:
+    inputs:
+      codigo:
+        description: "Código do post com vídeo na fila (ex.: R02)"
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  testar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Criar contêiner e conferir (não publica)
+        env:
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: python scripts/publicar.py --teste "${{ github.event.inputs.codigo }}"
